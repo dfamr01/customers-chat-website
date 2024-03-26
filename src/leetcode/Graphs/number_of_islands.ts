@@ -4,7 +4,7 @@
  * @return {number}
  */
 
-function isOutbound(row, col, rows, columns) {
+function isOutbounds(row, col, rows, columns) {
   if (row < 0 || row >= rows || col < 0 || col >= columns) {
     return true;
   }
@@ -18,7 +18,7 @@ const numIslands = function (grid) {
   const columns = grid[0].length;
 
   function dfs(row, col) {
-    if (isOutbound(row, col, rows, columns)) {
+    if (isOutbounds(row, col, rows, columns)) {
       return;
     }
 
