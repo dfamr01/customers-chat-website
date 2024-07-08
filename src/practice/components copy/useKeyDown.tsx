@@ -1,6 +1,6 @@
 // const url = "https://api.escuelajs.co/api/v1/products?offset=1&limit=2"
 
-import { useEffect } from "react";
+import { useEffect, useReducer } from "react";
 
 const useKeyboard = (key: string, cb: () => void, depArr: unknown[]) => {
   useEffect(() => {

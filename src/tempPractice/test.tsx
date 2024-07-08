@@ -1,38 +1,20 @@
 import React, { useEffect, useState } from "react";
 
-export function mainTest() {}
+// Define the props interface
+interface MyComponentProps {
+  title: string;
+  count: number;
+  isActive: boolean;
+}
 
-// columns id , name ,userName
+export const mainTest: React.FC<MyComponentProps> = ({
+  title,
+  count,
+  isActive,
+}) => {
+  console.log("🚀 ~ title:", title);
+  console.log("🚀 ~ count:", count);
+  console.log("🚀 ~ isActive:", isActive);
 
-const TableComponent = ({ columns = [], cells = [] }) => {
-  return (
-    <div>
-      <table>
-        <thead>
-          <tr>
-            {columns.map((col) => {
-              const { headerName, cellKey } = col;
-              return <th key={cellKey}>{headerName}</th>;
-            })}
-          </tr>
-        </thead>
-        <tbody>
-          {cells.map((cell) => {
-            return (
-              <tr key={cell.id}>
-                {columns.map(({ cellKey, action }) => {
-                  if (action) {
-                    return action(cell);
-                  }
-                  return <td>{cell[cellKey]}</td>;
-                })}
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-    </div>
-  );
+  return <></>;
 };
-
-export { TableComponent };
