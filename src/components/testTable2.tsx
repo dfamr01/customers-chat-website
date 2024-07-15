@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 import "./App.css";
 
-import Table2 from "./practice/components/table2/index";
+import Table2 from "../practice/components/table2/index";
 const USERS_DATA_URL = "https://jsonplaceholder.typicode.com/users";
 
 function App() {
