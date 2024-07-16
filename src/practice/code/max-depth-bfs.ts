@@ -26,4 +26,48 @@ class Solution {
     return depthCalc(node);
   }
 }
-export async function main() {}
+
+function createNode(value, left = null, right = null) {
+  return { value, left, right };
+}
+
+const tree = createNode(
+  1,
+  createNode(2, createNode(4), createNode(5)),
+  createNode(3, createNode(6), createNode(7))
+);
+
+function bfs(node) {
+  const result = [];
+  const queue = [node];
+  while (queue.length) {
+    const level = queue.length;
+    for (let i = 0; i < level; i++) {
+      const current = queue.shift();
+      result.push(current.value);
+      if (current.left) {
+        queue.push(current.left);
+      }
+      if (current.right) {
+        queue.push(current.right);
+      }
+    }
+  }
+  return result;
+}
+
+function bfs2(node) {
+  const result = [];
+  const queue = [node];
+  while (queue.length) {
+    const current = queue.shift();
+    result.push(current.value);
+    if (current.left) {
+      queue.push(current.left);
+    }
+    if (current.right) {
+      queue.push(current.right);
+    }
+  }
+  return result;
+}

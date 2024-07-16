@@ -4,10 +4,8 @@ import "./App.css";
 import { main } from "./practice/code/test";
 
 interface AppProps {}
-window.myVar = "ddd";
-const App: React.FC<AppProps> = ({ list = [] }) => {
-  console.log("🚀 ~ list:", typeof list);
-  // const App: React.FC<AppProps> = () => {
+
+const App: React.FC<AppProps> = () => {
   main();
   return (
     <div>
