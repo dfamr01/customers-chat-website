@@ -1,6 +1,6 @@
-function debounce(fn, wait) {
+function debounce(fn, delay) {
   let timeoutId = null;
-  function help() {
+  return function () {
     if (!timeoutId) {
       fn();
     } else {
@@ -9,7 +9,6 @@ function debounce(fn, wait) {
 
     timeoutId = setTimeout(() => {
       timeoutId = null;
-    }, wait);
-  }
-  return help;
+    }, delay);
+  };
 }
