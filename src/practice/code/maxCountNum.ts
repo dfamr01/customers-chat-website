@@ -2,6 +2,7 @@ function maxCount(arr: number[]) {
   if (!arr?.length) {
     return null;
   }
+
   const mapCount = new Map();
   let maxNum = arr[0];
   let maxCount = 0;
