@@ -5,8 +5,12 @@ import "./App.css";
 
 interface AppProps {}
 
+function main(...args) {
+  console.log("🚀 ~ main ~ args:", args);
+}
+
 const App: React.FC<AppProps> = () => {
-  // main();
+  main();
   return <div></div>;
 };
 
