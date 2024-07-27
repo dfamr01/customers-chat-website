@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { DataGrid, GridColDef, GridPaginationModel } from "@mui/x-data-grid";
-import { Box, TextField } from "@mui/material";
 
 interface GenericTableProps<T> {
   rows: T[];
@@ -19,7 +18,6 @@ interface GenericTableProps<T> {
 const DataTable = <T extends { id: number }>({
   rows,
   columns,
-
   fetchMoreRows,
   page,
   onPageChange,
@@ -44,7 +42,7 @@ const DataTable = <T extends { id: number }>({
       columns={columns}
       paginationMode="server"
       rowCount={totalRows}
-      pageSizeOptions={[5, 10, 25]}
+      pageSizeOptions={[25, 50, 100]}
       paginationModel={{ page, pageSize: rowsPerPage }}
       onPaginationModelChange={handlePaginationModelChange}
       loading={loading}

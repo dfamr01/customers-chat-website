@@ -24,21 +24,14 @@ class CallController {
 
   private initializeSocketListeners() {
     CallService.onCallCreated((call: Call) => {
-      console.log("🚀 ~ CallController ~ onCallCreated:", call);
       this.dispatch(addCall(call));
     });
 
     CallService.onCallDeleted((call: Call) => {
-      this.dispatch(removeCall(call.id));
+      this.dispatch(removeCall(call?.email));
     });
 
     CallService.onMessageSent(({ callId, message }) => {
-      console.log(
-        "🚀 ~ CallController ~ onMessageSent ~ newMessage:",
-        callId,
-        message
-      );
-
       this.dispatch(addMessage({ callId, message }));
     });
   }
@@ -50,7 +43,6 @@ class CallController {
 
   async getAllCalls() {
     const calls = await CallService.getAllCalls();
-    console.log("🚀 ~ CallController ~ getAllCalls ~ calls:", calls);
     this.dispatch(setCalls(calls));
   }
 
@@ -61,20 +53,10 @@ class CallController {
 
   async deleteCall(id: string) {
     const success = await CallService.deleteCall(id);
-    if (success) {
-      this.dispatch(removeCall(id));
-    }
   }
 
   async forwardMessage(messageData: CreateMessageDto) {
     const newMessage = await CallService.forwardMessage(messageData);
-    console.log(
-      "🚀 ~ CallController ~ forwardMessage ~ newMessage:",
-      newMessage
-    );
-    // this.dispatch(
-    //   addMessage({ callId: messageData.callId, message: newMessage })
-    // );
   }
 }
 

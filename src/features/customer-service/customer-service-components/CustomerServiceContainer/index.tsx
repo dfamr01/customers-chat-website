@@ -1,28 +1,28 @@
 import React, { useState, useEffect, ChangeEvent, useMemo } from "react";
 import DataTable from "../../../../shared/components/DataTable";
 import { Box, Button, TextField } from "@mui/material";
-import { selectCallsValuesArrayState } from "../../customer-service-store/customer-service.selectors";
+import { selectCallsState } from "../../customer-service-store/customer-service.selectors";
 import { connect } from "react-redux";
 import callController from "../../customer-service-controller/customer-service.controller";
+import ChatMessagesModal from "../ChatMessagesModal";
+import { Call } from "../../customer-service-types/customer-service.types";
 
-interface Chat {
-  id: number;
-  firstName: string;
-  lastName: string;
-  email: string;
-  address: string;
-  timestamp: string;
-  lastMessage: string;
-  totalMessages: number;
+interface CustomerServiceChatContainerProps {
+  calls: Call[];
 }
 
-const CustomerServiceChatContainer: React.FC = ({ calls }) => {
+const CustomerServiceChatContainer: React.FC<
+  CustomerServiceChatContainerProps
+> = ({ calls }) => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectUserCall, setSelectUserCall] = useState<string>(null);
+
   const [filter, setFilter] = useState<string>("");
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const callsEnriched = useMemo(() => {
-    return calls.map((call) => ({
+    return Object.values(calls).map((call) => ({
       ...call,
       timestamp: new Date(call.timestamp).toLocaleString(),
       totalMessages: call.messages.length,
@@ -32,20 +32,6 @@ const CustomerServiceChatContainer: React.FC = ({ calls }) => {
 
   const fetchChats = async () => {
     await callController.getAllCalls();
-
-    // // Simulate fetching chats data
-    // return Array.from({ length: limit }, (_, i) => ({
-    //   id: start + i + 1,
-    //   firstName: `First ${start + i + 1}`,
-    //   lastName: `Last ${start + i + 1}`,
-    //   email: `customer${start + i + 1}@example.com`,
-    //   address: "123-456 5th Ave New York NY 10001 USA",
-    //   timestamp: new Date(
-    //     Date.now() - Math.floor(Math.random() * 10000000000)
-    //   ).toISOString(),
-    //   lastMessage: `Last message ${start + i + 1}`,
-    //   totalMessages: Math.floor(Math.random() * 20) + 1,
-    // }));
   };
 
   useEffect(() => {
@@ -72,14 +58,6 @@ const CustomerServiceChatContainer: React.FC = ({ calls }) => {
     // setChats(fetchChats(0, newRowsPerPage));
   };
 
-  const fetchMoreRows = async () => {
-    console.log("🚀 ~ fetchMoreRows ~ fetchMoreRows:", fetchMoreRows);
-
-    const moreChats = fetchChats((page + 1) * rowsPerPage, rowsPerPage);
-    setPage(page + 1);
-    return moreChats;
-  };
-
   const filteredChats = useMemo(() => {
     return callsEnriched.filter((chat) => chat.email.includes(filter));
   }, [callsEnriched, filter]);
@@ -101,20 +79,27 @@ const CustomerServiceChatContainer: React.FC = ({ calls }) => {
       field: "actions",
       headerName: "All messages",
       width: 150,
-      renderCell: (params) => (
-        <Button
-          variant="contained"
-          onClick={() => alert(`Opening messages for ${params.row.email}`)}
-        >
-          Open
-        </Button>
-      ),
+      renderCell: (params) => {
+        const onClick = () => {
+          setSelectUserCall(params.row.email);
+          setModalOpen(true);
+        };
+        return (
+          <Button variant="contained" onClick={onClick}>
+            Open
+          </Button>
+        );
+      },
     },
   ];
-  console.log("🚀 ~ filteredChats:", filteredChats);
 
   return (
     <>
+      <ChatMessagesModal
+        open={modalOpen}
+        onClose={() => setModalOpen(false)}
+        chat={calls[selectUserCall]}
+      />
       <Box
         style={{ marginRight: "auto" }}
         display="flex"
@@ -133,12 +118,12 @@ const CustomerServiceChatContainer: React.FC = ({ calls }) => {
           rows={filteredChats}
           columns={columns}
           filterLabel="Email"
-          fetchMoreRows={fetchMoreRows}
+          // fetchMoreRows={fetchMoreRows}
           page={page}
           onPageChange={handlePageChange}
           rowsPerPage={rowsPerPage}
           onRowsPerPageChange={handleRowsPerPageChange}
-          totalRows={1000} // Replace with actual total number of rows
+          totalRows={callsEnriched.length} // Replace with actual total number of rows
         />
       </Box>
     </>
@@ -146,7 +131,7 @@ const CustomerServiceChatContainer: React.FC = ({ calls }) => {
 };
 function mapStateToProps(state) {
   return {
-    calls: selectCallsValuesArrayState(state),
+    calls: selectCallsState(state),
   };
 }
 

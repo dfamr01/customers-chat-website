@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 import { Box, TextField, Button, Typography, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import { useNavigate } from "react-router-dom";
 
 interface ChatMessageBoxProps {
   onSendMessage: (message: string) => Promise<void>;
+  handleClose: () => Promise<void>;
   maxLength: number;
 }
 
 const ChatMessageBox: React.FC<ChatMessageBoxProps> = ({
   onSendMessage,
+  handleClose,
   maxLength,
 }) => {
   const [message, setMessage] = useState("");
-  const navigate = useNavigate();
 
   const handleMessageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setMessage(event.target.value);
@@ -30,10 +30,6 @@ const ChatMessageBox: React.FC<ChatMessageBoxProps> = ({
       //     console.error("Error sending message:", error);
       //   });
     }
-  };
-
-  const handleClose = () => {
-    navigate("/login"); // Redirect to login page
   };
 
   return (

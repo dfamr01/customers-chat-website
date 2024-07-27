@@ -16,8 +16,6 @@ const callSlice = createSlice({
       return action.payload;
     },
     addCall: (state, action: PayloadAction<Call>) => {
-      console.log("🚀 ~ action:", action.payload);
-
       if (!state[action.payload.email]) {
         state[action.payload.email] = { ...action.payload };
       } else {
@@ -25,11 +23,10 @@ const callSlice = createSlice({
       }
     },
     removeCall: (state, action: PayloadAction<string>) => {
-      if (state[action.payload]) {
-        const { [action.payload]: _, ...rest } = state;
-        state = rest;
+      if (action.payload && state[action.payload]) {
+        delete state[action.payload];
+        return state;
       }
-      // state = state.filter((call) => call.id !== action.payload);
     },
     addMessage: (
       state,

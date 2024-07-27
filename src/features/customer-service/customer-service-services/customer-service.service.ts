@@ -29,7 +29,7 @@ class CallService {
     // this.socket = io(API_URL);
     // Check for successful connection
     this.socket.on("connect", () => {
-      console.log("Connected to the server");
+      console.info("Connected to the websocket server");
     });
 
     // Handle connection errors

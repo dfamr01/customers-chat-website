@@ -6,29 +6,17 @@ import { useNavigate } from "react-router-dom";
 import { ScreensRoutes as ScreenRoute } from "../../../../shared/router/routes";
 import callController from "../../../customer-service/customer-service-controller/customer-service.controller";
 import { LoginFormData } from "../../../../shared/interfaces/shared.interface";
-
-// const mockAddresses: string[] = [
-//   "123 Main St, Anytown, USA 12345",
-//   "456 Elm St, Somewhere City, USA 67890",
-//   "789 Oak Rd, Another Place, USA 13579",
-//   "321 Pine Ave, Newtown, USA 24680",
-//   "654 Maple Ln, Old City, USA 97531",
-// ];
+import { validator } from "../../../../shared/utils/utils";
 
 const LoginContainer: React.FC = () => {
   const dispatch = useDispatch();
+
   const [formData, setFormData] = useState<LoginFormData>({
-    firstName: "sss",
-    lastName: "bbb",
-    email: "dudu@dd.com",
-    address: "ben gurion 12",
+    firstName: "",
+    lastName: "",
+    email: "",
+    address: "",
   });
-  //   const [formData, setFormData] = useState<LoginFormData>({
-  //   firstName: "",
-  //   lastName: "",
-  //   email: "",
-  //   address: "",
-  // });
 
   const navigate = useNavigate();
 
@@ -60,11 +48,10 @@ const LoginContainer: React.FC = () => {
   };
 
   const validateForm = () => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const isValid =
       formData.firstName.trim() !== "" &&
       formData.lastName.trim() !== "" &&
-      emailRegex.test(formData.email) &&
+      validator.isEmailValid(formData.email) &&
       formData.address.trim() !== "";
     setIsFormValid(isValid);
   };
@@ -72,7 +59,6 @@ const LoginContainer: React.FC = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (isFormValid) {
-      console.log("Form submitted:", formData);
       dispatch(saveUserDetails(formData));
       callController.createCall(formData);
       // Reset form after saving

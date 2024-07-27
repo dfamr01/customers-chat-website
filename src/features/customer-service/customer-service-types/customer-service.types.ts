@@ -17,6 +17,11 @@ export interface Message {
   timestamp: Date;
 }
 
+export interface EnrichedCall extends Call {
+  lastMessage: string;
+  totalMessages: number;
+}
+
 export type Address = string;
 
 export interface CreateCallDto extends UserDetails {}
