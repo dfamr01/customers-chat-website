@@ -21,14 +21,13 @@ const ChatMessageBox: React.FC<ChatMessageBoxProps> = ({
 
   const handleSendMessage = () => {
     if (message.trim()) {
-      onSendMessage(message);
-      // onSendMessage(message)
-      //   .then(() => {
-      //     // setMessage("");
-      //   })
-      //   .catch((error) => {
-      //     console.error("Error sending message:", error);
-      //   });
+      onSendMessage(message)
+        .then(() => {
+          setMessage("");
+        })
+        .catch((error) => {
+          console.error("Error sending message:", error);
+        });
     }
   };
 

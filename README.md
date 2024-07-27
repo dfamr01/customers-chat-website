@@ -1,30 +1,47 @@
-# React + TypeScript + Vite
+# Real-Time Customer Support Chat System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+This project implements a real-time web-based messaging system that facilitates communication between customers and a service center. It's built using React with TypeScript, following a smart container and dumb component architecture. The system utilizes Axios for HTTP requests, Socket.IO for real-time communication, and Material-UI for the user interface.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+### Customer Side
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+1. **Login Page**
 
-- Configure the top-level `parserOptions` property like this:
+   - Text inputs for required fields (English only)
+   - Email input with validation
+   - Auto-complete dropdown populated with server data
+   - Submit button to create a new chat and proceed to the chat page
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+2. **Chat Page**
+   - Textarea for messages (200 character limit)
+   - Character counter
+   - Send message button
+   - Close button to end chat and return to login
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### Customer Service Side
+
+1. **Main Page**
+   - Filter input for customer email
+   - Real-time list of active chats
+   - Sortable columns including start date, last message, and total messages
+   - Button to view all chat messages in a modal
+
+## Technology Stack
+
+- React
+- Redux Tool Kit
+- TypeScript
+- Axios
+- Socket.IO
+- Material-UI
+
+## Architecture
+
+The project follows a smart container and dumb component architecture to promote separation of concerns and reusability.
+
+## Setup and Installation
+
+npm run start

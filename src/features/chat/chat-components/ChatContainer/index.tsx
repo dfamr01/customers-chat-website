@@ -14,8 +14,6 @@ const ChatContainer: React.FC<ChatContainerProps> = ({ userProfile }) => {
   const navigate = useNavigate();
 
   const handleSendMessage = async (message: string) => {
-    // Logic to send the message
-
     return callController.forwardMessage({
       ...userProfile,
       sender: userProfile.email,
@@ -24,9 +22,8 @@ const ChatContainer: React.FC<ChatContainerProps> = ({ userProfile }) => {
   };
 
   const handleClose = async () => {
-    // Logic to send the message
     callController.deleteCall(userProfile.email);
-    navigate("/login"); // Redirect to login page
+    navigate("/login");
   };
 
   return (
