@@ -1,17 +1,28 @@
-/* eslint-disable react/react-in-jsx-scope */
-import { useEffect, useState } from "react";
 import "./App.css";
-// import { main } from "./code/test";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./shared/router/router";
+import { selectIsUserLoggedIn } from "./shared/store/user-store/user-selectors";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
-interface AppProps {}
-
-function main(...args) {
-  console.log("🚀 ~ main ~ args:", args);
+interface AppProps {
+  isLoggedIn: boolean;
 }
 
-const App: React.FC<AppProps> = () => {
-  main();
-  return <div></div>;
+const App: React.FC<AppProps> = ({ isLoggedIn }) => {
+  return (
+    <>
+      <RouterProvider router={router(isLoggedIn)} />
+    </>
+  );
 };
-
-export default App;
+function mapStateToProps(state) {
+  return {
+    isLoggedIn: selectIsUserLoggedIn(state),
+  };
+}
+App.propTypes = {
+  isLoggedIn: PropTypes.bool.isRequired,
+};
+const AppComponent = connect(mapStateToProps)(App);
+export default AppComponent;
