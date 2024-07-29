@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { DataGrid, GridColDef, GridPaginationModel } from "@mui/x-data-grid";
 
 interface GenericTableProps<T> {
@@ -18,14 +18,14 @@ interface GenericTableProps<T> {
 const DataTable = <T extends { id: number }>({
   rows,
   columns,
-  fetchMoreRows,
+  // fetchMoreRows,
   page,
   onPageChange,
   rowsPerPage,
   onRowsPerPageChange,
   totalRows,
 }: GenericTableProps<T>) => {
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
 
   const handlePaginationModelChange = (model: GridPaginationModel) => {
     if (model.page !== page) {
@@ -45,7 +45,7 @@ const DataTable = <T extends { id: number }>({
       pageSizeOptions={[25, 50, 100]}
       paginationModel={{ page, pageSize: rowsPerPage }}
       onPaginationModelChange={handlePaginationModelChange}
-      loading={loading}
+      // loading={loading}
     />
   );
 };

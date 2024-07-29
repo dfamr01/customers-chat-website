@@ -14,7 +14,7 @@ const loginSlice = createSlice({
   name: "userDetails",
   initialState,
   reducers: {
-    saveUserDetails: (state, action: PayloadAction<UserDetails>) => {
+    saveUserDetails: (_, action: PayloadAction<UserDetails>) => {
       return { ...action.payload, isLoggedIn: true };
     },
     clearUserDetails: () => initialState,
