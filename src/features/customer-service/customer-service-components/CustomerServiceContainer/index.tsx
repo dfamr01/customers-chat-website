@@ -19,7 +19,7 @@ const CustomerServiceChatContainer: React.FC<
 
   const [filter, setFilter] = useState<string>("");
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [rowsPerPage, setRowsPerPage] = useState(25);
 
   const callsEnriched = useMemo(() => {
     return Object.values(calls).map((call) => ({

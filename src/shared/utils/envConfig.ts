@@ -1,6 +1,6 @@
 export const ENV_VARS = {
   API_SERVER: "http://localhost:3000",
-  WEBSOCKET_SERVER: "http://localhost:3005",
+  WEBSOCKET_SERVER: "http://localhost:3000",
 };
 
 function picker(obj, pickerObj) {

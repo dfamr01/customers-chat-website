@@ -19,10 +19,12 @@ class CallService {
     //   path: "/socket.io", // Make sure this matches the server-side path
     // });
     this.socket = io(ENV_VARS.WEBSOCKET_SERVER, {
-      transports: ["websocket", "polling"],
+      transports: ["websocket"],
+      // transports: ["websocket", "polling"],
       withCredentials: true,
       forceNew: true,
       timeout: 10000, // Increase timeout
+      path: "/socket.io", // Make sure this matches the server-side path
     });
 
     // this.socket = io(ENV_VARS.API_SERVER);
