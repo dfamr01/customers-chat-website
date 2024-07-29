@@ -13,8 +13,8 @@ interface ChatContainerProps {
 const ChatContainer: React.FC<ChatContainerProps> = ({ userProfile }) => {
   const navigate = useNavigate();
 
-  const handleSendMessage = async (message: string) => {
-    return callController.forwardMessage({
+  const handleSendMessage = async (message: string): Promise<void> => {
+    await callController.forwardMessage({
       ...userProfile,
       sender: userProfile.email,
       message,
