@@ -107,7 +107,7 @@ const CustomerServiceChatContainer: React.FC<
         mb={2}
       >
         <TextField
-          label="Email"
+          label="filter by email"
           value={filter}
           onChange={handleFilterChange}
           variant="outlined"

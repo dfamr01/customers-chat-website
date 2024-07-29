@@ -43,7 +43,6 @@ const HomeContainer: React.FC<AppProps> = () => {
         component={RouterLink}
         to={ScreensRoutes.CustomerService}
         variant="contained"
-        onClick={() => console.log("Chatss")}
       >
         <ButtonCaption variant="button">Chat Representative</ButtonCaption>
       </ButtonClient>
