@@ -45,7 +45,8 @@ The project follows a smart container and dumb component architecture to promote
 
 ## Setup and Installation
 
-npm run start
+run dev `npm run dev`
+run locally `npm run start`
 
 ## Deployed Website
 
