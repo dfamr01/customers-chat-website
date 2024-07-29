@@ -4,12 +4,16 @@ import { Link as RouterLink } from "react-router-dom";
 
 interface AppProps {}
 
-const ButtonAgent = styled(Button)`
+interface ButtonOwnProps {
+  to: string;
+}
+
+const ButtonAgent = styled(Button)<ButtonOwnProps>`
   background-color: #bb4ce22e;
   margin-bottom: 10px;
 `;
 
-const ButtonClient = styled(Button)`
+const ButtonClient = styled(Button)<{ to: string }>`
   background-color: #e24c4c2e;
 `;
 const ButtonCaption = styled(Typography)`
@@ -27,6 +31,7 @@ const HomeContainer: React.FC<AppProps> = () => {
   return (
     <PaperWrapper>
       <ButtonAgent
+        // @ts-expect-error - Property 'to' does not exist on type 'IntrinsicAttributes & ButtonProps & { children?: ReactNode; }'.
         component={RouterLink}
         to={ScreensRoutes.Login}
         variant="contained"
@@ -34,6 +39,7 @@ const HomeContainer: React.FC<AppProps> = () => {
         <ButtonCaption variant="button">Customer</ButtonCaption>
       </ButtonAgent>
       <ButtonClient
+        // @ts-expect-error - Property 'to' does not exist on type 'IntrinsicAttributes & ButtonProps & { children?: ReactNode; }'.
         component={RouterLink}
         to={ScreensRoutes.CustomerService}
         variant="contained"

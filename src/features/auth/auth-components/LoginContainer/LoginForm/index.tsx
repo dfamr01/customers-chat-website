@@ -8,16 +8,18 @@ import {
   InputLabel,
   Box,
   Typography,
-  SelectChangeEvent,
 } from "@mui/material";
+import { UserDetails } from "../../../../../shared/interfaces/shared.interface";
+
+import { SelectChangeEvent } from "@mui/material";
 
 interface LoginFormProps {
-  formData: FormData;
+  formData: UserDetails;
   addresses: string[];
   handleInputChange: (
     e:
-      | React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-      | SelectChangeEvent
+      | React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+      | SelectChangeEvent<string>
   ) => void;
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   isFormValid: boolean;

@@ -26,7 +26,7 @@ const CustomerServiceChatContainer: React.FC<
       ...call,
       timestamp: new Date(call.timestamp).toLocaleString(),
       totalMessages: call.messages.length,
-      lastMessage: call.messages.at(-1)?.message || "",
+      lastMessage: call.messages[call.messages.length - 1]?.message || "",
     }));
   }, [calls]);
 
@@ -123,7 +123,7 @@ const CustomerServiceChatContainer: React.FC<
           onPageChange={handlePageChange}
           rowsPerPage={rowsPerPage}
           onRowsPerPageChange={handleRowsPerPageChange}
-          totalRows={callsEnriched.length} // Replace with actual total number of rows
+          totalRows={callsEnriched.length}
         />
       </Box>
     </>

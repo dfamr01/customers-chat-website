@@ -4,10 +4,10 @@ import { DataGrid, GridColDef, GridPaginationModel } from "@mui/x-data-grid";
 interface GenericTableProps<T> {
   rows: T[];
   columns: GridColDef[];
-  filter: string;
+  filter?: string;
   filterLabel: string;
-  onFilterChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  fetchMoreRows: () => Promise<T[]>;
+  onFilterChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  fetchMoreRows?: () => Promise<T[]>;
   page: number;
   onPageChange: (newPage: number) => void;
   rowsPerPage: number;
@@ -15,7 +15,7 @@ interface GenericTableProps<T> {
   totalRows: number;
 }
 
-const DataTable = <T extends { id: number }>({
+function DataTable<T>({
   rows,
   columns,
   // fetchMoreRows,
@@ -24,7 +24,7 @@ const DataTable = <T extends { id: number }>({
   rowsPerPage,
   onRowsPerPageChange,
   totalRows,
-}: GenericTableProps<T>) => {
+}: GenericTableProps<T>) {
   // const [loading, setLoading] = useState(false);
 
   const handlePaginationModelChange = (model: GridPaginationModel) => {
@@ -48,6 +48,6 @@ const DataTable = <T extends { id: number }>({
       // loading={loading}
     />
   );
-};
+}
 
 export default DataTable;

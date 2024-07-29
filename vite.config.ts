@@ -1,7 +1,8 @@
 import { defineConfig, loadEnv } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
+import { pickEnv } from "./src/shared/utils/envConfig";
 import react from "@vitejs/plugin-react";
-
+// import aliases from "./aliases";
 // https://vitejs.dev/config/
 
 export default defineConfig(({ command, mode }) => {
@@ -10,7 +11,7 @@ export default defineConfig(({ command, mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
   const buildEnv = {
     ...env.APP_ENV,
-    process.env,
+    ...pickEnv(process.env),
   };
   console.log("build env", buildEnv);
   return {
@@ -22,8 +23,8 @@ export default defineConfig(({ command, mode }) => {
       VitePWA({
         includeAssets: ["favicon.ico", "apple-touch-icon.png", "mask-icon.svg"],
         manifest: {
-          name: "CS",
-          short_name: "CS",
+          name: "FX1",
+          short_name: "FX1",
           theme_color: "#ffffff",
           icons: [
             {

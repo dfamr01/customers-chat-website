@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import {
   Modal,
   Box,
@@ -27,6 +27,10 @@ const ChatMessagesModal: React.FC<ChatMessagesModalProps> = ({
   chat,
 }) => {
   if (!chat) return null;
+
+  const messages = useMemo(() => {
+    return [...chat.messages].reverse();
+  }, [chat.messages]);
 
   return (
     <Modal open={open} onClose={onClose}>
@@ -80,7 +84,7 @@ const ChatMessagesModal: React.FC<ChatMessagesModalProps> = ({
               </TableRow>
             </TableHead>
             <TableBody>
-              {chat.messages.toReversed().map((message, index) => (
+              {messages.map((message, index) => (
                 <TableRow key={index}>
                   <TableCell>{message.message}</TableCell>
                   <TableCell>

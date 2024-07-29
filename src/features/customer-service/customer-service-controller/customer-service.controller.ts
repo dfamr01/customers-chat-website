@@ -53,10 +53,12 @@ class CallController {
 
   async deleteCall(id: string) {
     const success = await CallService.deleteCall(id);
+    return success;
   }
 
   async forwardMessage(messageData: CreateMessageDto) {
     const newMessage = await CallService.forwardMessage(messageData);
+    return newMessage;
   }
 }
 
