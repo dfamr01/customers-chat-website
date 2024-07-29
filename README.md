@@ -32,6 +32,7 @@ This project implements a real-time web-based messaging system that facilitates 
 ## Technology Stack
 
 - React
+- React Router
 - Redux Tool Kit
 - TypeScript
 - Axios
@@ -45,3 +46,9 @@ The project follows a smart container and dumb component architecture to promote
 ## Setup and Installation
 
 npm run start
+
+## Deployed Website
+
+[Visit Customers Support][cs]
+
+[cs]: https://customers-chat-website.vercel.app/
