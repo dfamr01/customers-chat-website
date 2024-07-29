@@ -12,7 +12,7 @@ const callSlice = createSlice({
   name: "calls",
   initialState,
   reducers: {
-    setCalls: (state, action: PayloadAction<Record<string, Call>>) => {
+    setCalls: (_, action: PayloadAction<Record<string, Call>>) => {
       return action.payload;
     },
     addCall: (state, action: PayloadAction<Call>) => {
