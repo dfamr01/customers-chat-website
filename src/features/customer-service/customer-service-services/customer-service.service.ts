@@ -8,25 +8,24 @@ import {
   CreateMessageDto,
 } from "../customer-service-types/customer-service.types";
 
-const API_URL = "http://localhost:3000";
-
+import { ENV_VARS } from "../../../shared/utils/envConfig";
 class CallService {
   private socket: Socket;
   public path = "/calls";
 
   constructor() {
-    // this.socket = io(API_URL, {
+    // this.socket = io(ENV_VARS.API_SERVER, {
     //   transports: ["websocket", "polling"],
     //   path: "/socket.io", // Make sure this matches the server-side path
     // });
-    this.socket = io("http://localhost:3005", {
+    this.socket = io(ENV_VARS.WEBSOCKET_SERVER, {
       transports: ["websocket", "polling"],
       withCredentials: true,
       forceNew: true,
       timeout: 10000, // Increase timeout
     });
 
-    // this.socket = io(API_URL);
+    // this.socket = io(ENV_VARS.API_SERVER);
     // Check for successful connection
     this.socket.on("connect", () => {
       console.info("Connected to the websocket server");
@@ -39,14 +38,17 @@ class CallService {
   }
 
   async getAddresses(query: string): Promise<Address[]> {
-    const response = await axios.get(`${API_URL}${this.path}/addresses`, {
-      params: { q: query },
-    });
+    const response = await axios.get(
+      `${ENV_VARS.API_SERVER}${this.path}/addresses`,
+      {
+        params: { q: query },
+      }
+    );
     return response.data.data;
   }
 
   async getAllCalls(): Promise<Record<string, Call>> {
-    const response = await axios.get(`${API_URL}${this.path}`);
+    const response = await axios.get(`${ENV_VARS.API_SERVER}${this.path}`);
     return response.data.data;
   }
 

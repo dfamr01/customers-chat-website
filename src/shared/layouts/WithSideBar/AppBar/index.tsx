@@ -22,7 +22,7 @@ function PrimarySearchAppBar({ isLoggedIn, userProfile }) {
           <Toolbar>
             <Link style={{ color: "inherit", textDecoration: "none" }} to="/">
               <Caption variant="h6" noWrap>
-                R2Net
+                CS
               </Caption>
             </Link>
 
