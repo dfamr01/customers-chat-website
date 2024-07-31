@@ -30,7 +30,7 @@ class CallService {
       auth: {
         authorization: "",
       },
-      path: "/socket.io",
+      // path: "/socket.io",
       // path: "/customers-chat-server2/socket.io",
     });
 
