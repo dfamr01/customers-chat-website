@@ -21,13 +21,8 @@ export function pickEnv(obj = {}) {
 
 export function setEnv() {
   const res = pickEnv(import.meta.env);
+  console.log("🚀 ~ setEnv ~ res:", res);
 
   Object.assign(ENV_VARS, res);
 }
 setEnv();
-// setEnv({
-//   VITE_API_SERVER:
-//     "https://customers-support-bh7no.ondigitalocean.app/customers-chat-server2",
-//   VITE_WEBSOCKET_SERVER:
-//     "https://customers-support-bh7no.ondigitalocean.app/customers-chat-server2",
-// });
