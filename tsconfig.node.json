@@ -8,6 +8,7 @@
     "strict": false
   },
   "include": [
+    "envConfig.ts",
     "vite.config.ts"
   ]
 }
