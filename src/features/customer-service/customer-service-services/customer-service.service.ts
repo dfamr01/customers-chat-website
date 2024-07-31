@@ -31,7 +31,7 @@ class CallService {
         authorization: "",
       },
       // path: "/socket.io",
-      // path: "/customers-chat-server2/socket.io",
+      path: "/customers-chat-server2/socket.io",
     });
 
     // this.socket = io(ENV_VARS.WEBSOCKET_SERVER, {
