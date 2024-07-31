@@ -23,8 +23,8 @@ export default defineConfig(({ command, mode }) => {
       VitePWA({
         includeAssets: ["favicon.ico", "apple-touch-icon.png", "mask-icon.svg"],
         manifest: {
-          name: "FX1",
-          short_name: "FX1",
+          name: "CS",
+          short_name: "CS",
           theme_color: "#ffffff",
           icons: [
             {
