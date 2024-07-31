@@ -14,7 +14,7 @@ class CallService {
   public path = "/calls";
 
   constructor() {
-    // this.socket = io(ENV_VARS.API_SERVER, {
+    // this.socket = io(ENV_VARS.VITE_API_SERVER, {
     //   transports: ["websocket", "polling"],
     //   path: "/socket.io", // Make sure this matches the server-side path
     // });
@@ -40,7 +40,7 @@ class CallService {
     //   path: "/socket.io", // Make sure this matches the server-side path
     // });
 
-    // this.socket = io(ENV_VARS.API_SERVER);
+    // this.socket = io(ENV_VARS.VITE_API_SERVER);
     // Check for successful connection
     this.socket.on("connect", () => {
       console.info("Connected to the websocket server");
@@ -54,7 +54,7 @@ class CallService {
 
   async getAddresses(query: string): Promise<Address[]> {
     const response = await axios.get(
-      `${ENV_VARS.API_SERVER}${this.path}/addresses`,
+      `${ENV_VARS.VITE_API_SERVER}${this.path}/addresses`,
       {
         params: { q: query },
       }
@@ -63,7 +63,7 @@ class CallService {
   }
 
   async getAllCalls(): Promise<Record<string, Call>> {
-    const response = await axios.get(`${ENV_VARS.API_SERVER}${this.path}`);
+    const response = await axios.get(`${ENV_VARS.VITE_API_SERVER}${this.path}`);
     return response.data.data;
   }
 
