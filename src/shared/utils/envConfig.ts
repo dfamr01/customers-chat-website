@@ -1,6 +1,6 @@
 export const ENV_VARS = {
-  API_SERVER: "http://localhost:3000",
-  WEBSOCKET_SERVER: "http://localhost:3000",
+  VITE_API_SERVER: "http://localhost:3000",
+  VITE_WEBSOCKET_SERVER: "http://localhost:3000",
 };
 
 function picker(obj, pickerObj) {
@@ -14,14 +14,20 @@ function picker(obj, pickerObj) {
 }
 
 export function pickEnv(obj = {}) {
+  console.log("🚀 ~ pickEnv ~ obj:", obj);
   const res = picker(obj, ENV_VARS);
   return res;
 }
 
-export function setEnv(buildEnv) {
-  const res = pickEnv(buildEnv);
-  console.log("setEnv", res);
-  console.log("import.meta", import.meta);
-  console.log("import.meta.env", import.meta.env);
+export function setEnv() {
+  const res = pickEnv(import.meta.env);
+
   Object.assign(ENV_VARS, res);
 }
+setEnv();
+// setEnv({
+//   VITE_API_SERVER:
+//     "https://customers-support-bh7no.ondigitalocean.app/customers-chat-server2",
+//   VITE_WEBSOCKET_SERVER:
+//     "https://customers-support-bh7no.ondigitalocean.app/customers-chat-server2",
+// });
