@@ -20,7 +20,7 @@ export function pickEnv(obj = {}) {
 
 function setEnv() {
   const res = pickEnv(import.meta.env);
-  console.log("setEnv", setEnv);
+  console.log("setEnv", res);
   Object.assign(ENV_VARS, res);
 }
 
