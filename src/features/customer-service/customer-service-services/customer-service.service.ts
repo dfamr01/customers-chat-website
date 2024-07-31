@@ -19,17 +19,12 @@ class CallService {
     //   path: "/socket.io", // Make sure this matches the server-side path
     // });
 
-    console.info(
-      "ENV_VARS.VITE_WEBSOCKET_SERVER",
-      ENV_VARS.VITE_WEBSOCKET_SERVER
-    );
     this.socket = io(ENV_VARS.VITE_WEBSOCKET_SERVER, {
       transports: ["websocket"],
-      // transports: ["websocket", "polling"],
       withCredentials: true,
       forceNew: true,
       timeout: 10000, // Increase timeout
-      path: "/socket.io", // Make sure this matches the server-side path
+      path: "/customers-chat-server2/socket.io",
     });
 
     // this.socket = io(ENV_VARS.VITE_API_SERVER);
