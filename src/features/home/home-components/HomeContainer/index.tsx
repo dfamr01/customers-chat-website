@@ -1,7 +1,8 @@
-import { Button, Paper, styled, Typography } from "@mui/material";
+import { Box, Button, Paper, styled } from "@mui/material";
 import { ScreensRoutes } from "../../../../shared/router/routes";
 import { Link as RouterLink } from "react-router-dom";
-
+import logo from "../../../../../public/android-chrome-512x512.png";
+// import logo from "../../../../../public/android-chrome-192x192.png";
 interface AppProps {}
 
 interface ButtonOwnProps {
@@ -9,17 +10,20 @@ interface ButtonOwnProps {
 }
 
 const ButtonAgent = styled(Button)<ButtonOwnProps>`
-  background-color: #bb4ce22e;
+  /* background-color: #bb4ce22e; */
   margin-bottom: 10px;
 `;
 
+const Logo = styled("img")`
+  /* background-color: #bb4ce22e; */
+  margin-bottom: 10px;
+  width: 200px;
+`;
+
 const ButtonClient = styled(Button)<{ to: string }>`
-  background-color: #e24c4c2e;
+  /* background-color: #e24c4c2e; */
 `;
-const ButtonCaption = styled(Typography)`
-  color: black;
-  font-size: 1rem;
-`;
+
 export const PaperWrapper = styled(Paper)`
   display: flex;
   flex-direction: column;
@@ -30,13 +34,22 @@ export const PaperWrapper = styled(Paper)`
 const HomeContainer: React.FC<AppProps> = () => {
   return (
     <PaperWrapper>
+      <Box>
+        <Logo
+          // srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+          src={logo}
+          alt="logo"
+          loading="lazy"
+        />
+      </Box>
       <ButtonAgent
         // @ts-expect-error - Property 'to' does not exist on type 'IntrinsicAttributes & ButtonProps & { children?: ReactNode; }'.
         component={RouterLink}
         to={ScreensRoutes.Login}
         variant="contained"
+        color="secondary"
       >
-        <ButtonCaption variant="button">Customer</ButtonCaption>
+        Customer
       </ButtonAgent>
       <ButtonClient
         // @ts-expect-error - Property 'to' does not exist on type 'IntrinsicAttributes & ButtonProps & { children?: ReactNode; }'.
@@ -44,7 +57,7 @@ const HomeContainer: React.FC<AppProps> = () => {
         to={ScreensRoutes.CustomerService}
         variant="contained"
       >
-        <ButtonCaption variant="button">Chat Representative</ButtonCaption>
+        Chat Representative
       </ButtonClient>
     </PaperWrapper>
   );
