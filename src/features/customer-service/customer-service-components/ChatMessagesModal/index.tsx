@@ -36,6 +36,7 @@ const ChatMessagesModal: React.FC<ChatMessagesModalProps> = ({
     <Modal open={open} onClose={onClose}>
       <Box
         sx={{
+          maxWidth: "100%",
           position: "absolute",
           top: "50%",
           left: "50%",
