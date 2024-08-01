@@ -23,8 +23,8 @@ class CallService {
     // ? 'wss://customers-support-bh7no.ondigitalocean.app'
     // : 'ws://localhost:3000'; // Assuming your backend runs on port 3000 locally
 
-    this.socket = io("https://customers-support-bh7no.ondigitalocean.app", {
-      // this.socket = io(ENV_VARS.VITE_WEBSOCKET_SERVER, {
+    // this.socket = io("https://customers-support-bh7no.ondigitalocean.app", {
+    this.socket = io(ENV_VARS.VITE_WEBSOCKET_SERVER, {
       autoConnect: true,
       reconnection: true,
       reconnectionAttempts: 20,
@@ -32,7 +32,7 @@ class CallService {
         authorization: "",
       },
       // path: "/socket.io",
-      // path: "/customers-chat-server2/socket.io",
+      path: "/customers-chat-server2/socket.io",
     });
 
     // this.socket = io(ENV_VARS.WEBSOCKET_SERVER, {
