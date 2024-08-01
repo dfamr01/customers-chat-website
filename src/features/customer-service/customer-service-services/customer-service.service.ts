@@ -15,13 +15,11 @@ class CallService {
 
   constructor() {
     this.socket = io(ENV_VARS.VITE_WEBSOCKET_SERVER, {
-      autoConnect: true,
-      reconnection: true,
-      reconnectionAttempts: 20,
-      auth: {
-        authorization: "",
-      },
-      path: "/socket.io",
+      transports: ["websocket"],
+      withCredentials: true,
+      forceNew: true,
+      timeout: 10000,
+      path: "/customers-chat-server2/socket.io",
     });
 
     this.socket.on("connect", () => {
