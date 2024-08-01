@@ -12,8 +12,17 @@ import {
   TableRow,
   Paper,
 } from "@mui/material";
+import { styled } from "@mui/material/styles";
+
 import CloseIcon from "@mui/icons-material/Close";
 import { EnrichedCall } from "../../customer-service-types/customer-service.types";
+
+const MessageCaption = styled(Typography)`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
+  white-space: normal;
+`;
 
 interface ChatMessagesModalProps {
   open: boolean;
@@ -87,7 +96,9 @@ const ChatMessagesModal: React.FC<ChatMessagesModalProps> = ({
             <TableBody>
               {messages.map((message, index) => (
                 <TableRow key={index}>
-                  <TableCell>{message.message}</TableCell>
+                  <TableCell>
+                    <MessageCaption>{message.message}</MessageCaption>
+                  </TableCell>
                   <TableCell>
                     {new Date(message.timestamp).toLocaleString()}
                   </TableCell>
