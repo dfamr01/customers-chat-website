@@ -1,45 +1,14 @@
+// call.service.ts
 import axios from "axios";
-import io, { Socket } from "socket.io-client";
-import {
-  Call,
-  Message,
-  Address,
-  CreateCallDto,
-  CreateMessageDto,
-} from "../customer-service-types/customer-service.types";
-
+import { Call, Message } from "../../../shared/interfaces/shared.interface";
 import { ENV_VARS } from "../../../shared/utils/envConfig";
-class CallService {
-  private socket: Socket;
+import { WebSocketBase } from "../../../shared/services/websocket.service";
+
+class CallService extends WebSocketBase {
   public path = "/calls";
 
   constructor() {
-    this.socket = io(ENV_VARS.VITE_WEBSOCKET_SERVER, {
-      transports: ["websocket"],
-      withCredentials: true,
-      forceNew: true,
-      timeout: 10000,
-      path: "/customers-chat-server2/socket.io",
-    });
-
-    this.socket.on("connect", () => {
-      console.info("Connected to the websocket server");
-    });
-
-    // Handle connection errors
-    this.socket.on("connect_error", (err) => {
-      console.error("Connection error:", err);
-    });
-  }
-
-  async getAddresses(query: string): Promise<Address[]> {
-    const response = await axios.get(
-      `${ENV_VARS.VITE_API_SERVER}${this.path}/addresses`,
-      {
-        params: { q: query },
-      }
-    );
-    return response.data.data;
+    super();
   }
 
   async getAllCalls(): Promise<Record<string, Call>> {
@@ -47,43 +16,24 @@ class CallService {
     return response.data.data;
   }
 
-  createCall(callData: CreateCallDto): Promise<Call> {
-    return new Promise((resolve) => {
-      this.socket.emit("createCall", callData, (call: Call) => {
-        resolve(call);
-      });
-    });
-  }
-
   deleteCall(id: string): Promise<boolean> {
-    return new Promise((resolve) => {
-      this.socket.emit("deleteCall", id, (success: boolean) => {
-        resolve(success);
-      });
-    });
-  }
-
-  forwardMessage(messageData: CreateMessageDto): Promise<Message> {
-    return new Promise((resolve) => {
-      this.socket.emit("forwardMessage", messageData, (message: Message) => {
-        resolve(message);
-      });
-    });
+    return this.emitWithAck<string, boolean>("deleteCall", id);
   }
 
   onCallCreated(callback: (call: Call) => void) {
-    this.socket.on("callCreated", callback);
+    this.on("callCreated", callback);
   }
 
   onCallDeleted(callback: (call: Call) => void) {
-    this.socket.on("callDeleted", callback);
+    this.on("callDeleted", callback);
   }
 
   onMessageSent(
     callback: (data: { callId: string; message: Message }) => void
   ) {
-    this.socket.on("messageSent", callback);
+    this.on("messageSent", callback);
   }
 }
 
-export default new CallService();
+const callService = new CallService();
+export { callService };

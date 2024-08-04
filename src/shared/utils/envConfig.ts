@@ -1,6 +1,7 @@
 export const ENV_VARS = {
   VITE_API_SERVER: "http://localhost:3000",
   VITE_WEBSOCKET_SERVER: "http://localhost:3000",
+  VITE_WEBSOCKET_PATH: "/socket.io",
 };
 
 function picker(obj, pickerObj) {

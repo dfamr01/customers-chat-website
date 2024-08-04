@@ -1,8 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import {
-  Call,
-  Message,
-} from "../customer-service-types/customer-service.types";
+import { Call, Message } from "../../../shared/interfaces/shared.interface";
 
 type CallState = Record<string, Call>;
 
