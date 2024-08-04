@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { selectUserDetailsState } from "../../../../shared/store/user-store/user-selectors";
 import { UserDetails } from "../../../../shared/interfaces/shared.interface";
 import { useNavigate } from "react-router-dom";
+import { usersController } from "../../../users/users-controllers/users.controller";
 
 interface ChatContainerProps {
   userProfile: UserDetails;
@@ -14,7 +15,7 @@ const ChatContainer: React.FC<ChatContainerProps> = ({ userProfile }) => {
   const navigate = useNavigate();
 
   const handleSendMessage = async (message: string): Promise<void> => {
-    await callController.forwardMessage({
+    await usersController.forwardMessage({
       ...userProfile,
       sender: userProfile.email,
       message,

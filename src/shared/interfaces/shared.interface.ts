@@ -1,4 +1,8 @@
-import { Message } from "../../features/customer-service/customer-service-types/customer-service.types";
+export interface Message {
+  sender: string;
+  message: string;
+  timestamp: Date;
+}
 
 export interface LoginFormData {
   firstName: string;

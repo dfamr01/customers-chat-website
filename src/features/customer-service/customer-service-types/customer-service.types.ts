@@ -1,18 +1,6 @@
-import { Call, UserDetails } from "../../../shared/interfaces/shared.interface";
-
-export interface Message {
-  sender: string;
-  message: string;
-  timestamp: Date;
-}
+import { Call } from "../../../shared/interfaces/shared.interface";
 
 export interface EnrichedCall extends Call {
   lastMessage: string;
   totalMessages: number;
-}
-
-export interface CreateMessageDto
-  extends Omit<UserDetails, "id" | "isLoggedIn"> {
-  message: string;
-  sender: string;
 }

@@ -1,10 +1,6 @@
 // call.service.ts
 import axios from "axios";
-import {
-  Message,
-  CreateMessageDto,
-} from "../customer-service-types/customer-service.types";
-import { Call } from "../../../shared/interfaces/shared.interface";
+import { Call, Message } from "../../../shared/interfaces/shared.interface";
 import { ENV_VARS } from "../../../shared/utils/envConfig";
 import { WebSocketBase } from "../../../shared/services/websocket.service";
 
@@ -22,13 +18,6 @@ class CallService extends WebSocketBase {
 
   deleteCall(id: string): Promise<boolean> {
     return this.emitWithAck<string, boolean>("deleteCall", id);
-  }
-
-  forwardMessage(messageData: CreateMessageDto): Promise<Message> {
-    return this.emitWithAck<CreateMessageDto, Message>(
-      "forwardMessage",
-      messageData
-    );
   }
 
   onCallCreated(callback: (call: Call) => void) {

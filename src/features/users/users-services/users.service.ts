@@ -1,8 +1,12 @@
 import axios from "axios";
 import { ENV_VARS } from "../../../shared/utils/envConfig";
-import { Address, CreateCallDto } from "../users-types/users.types";
+import {
+  Address,
+  CreateCallDto,
+  CreateMessageDto,
+} from "../users-types/users.types";
 import { WebSocketBase } from "../../../shared/services/websocket.service";
-import { Call } from "../../../shared/interfaces/shared.interface";
+import { Call, Message } from "../../../shared/interfaces/shared.interface";
 
 class Users extends WebSocketBase {
   public path = "/users";
@@ -19,6 +23,13 @@ class Users extends WebSocketBase {
 
   createCall(callData: CreateCallDto): Promise<Call> {
     return this.emitWithAck<CreateCallDto, Call>("createCall", callData);
+  }
+
+  forwardMessage(messageData: CreateMessageDto): Promise<Message> {
+    return this.emitWithAck<CreateMessageDto, Message>(
+      "forwardMessage",
+      messageData
+    );
   }
 }
 

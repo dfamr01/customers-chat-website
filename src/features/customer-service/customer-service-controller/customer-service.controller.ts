@@ -6,7 +6,6 @@ import {
   removeCall,
   addMessage,
 } from "../customer-service-store/customer-service.slice";
-import { CreateMessageDto } from "../customer-service-types/customer-service.types";
 import { Call } from "../../../shared/interfaces/shared.interface";
 
 import { dispatch } from "../../../shared/store/store";
@@ -41,11 +40,6 @@ class CallController {
   async deleteCall(id: string) {
     const success = await callService.deleteCall(id);
     return success;
-  }
-
-  async forwardMessage(messageData: CreateMessageDto) {
-    const newMessage = await callService.forwardMessage(messageData);
-    return newMessage;
   }
 }
 
