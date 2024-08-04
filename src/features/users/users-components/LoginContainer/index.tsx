@@ -4,9 +4,9 @@ import { saveUserDetails } from "../../../../shared/store/user-store/user-slice"
 import LoginForm from "./LoginForm";
 import { useNavigate } from "react-router-dom";
 import { ScreensRoutes as ScreenRoute } from "../../../../shared/router/routes";
-import callController from "../../../customer-service/customer-service-controller/customer-service.controller";
 import { LoginFormData } from "../../../../shared/interfaces/shared.interface";
 import { validator } from "../../../../shared/utils/utils";
+import { usersController } from "../../users-controllers/users.controller";
 
 const LoginContainer: React.FC = () => {
   const dispatch = useDispatch();
@@ -33,7 +33,7 @@ const LoginContainer: React.FC = () => {
 
   const fetchAddresses = async () => {
     try {
-      const result = await callController.getAddresses();
+      const result = await usersController.getAddresses();
       setAddresses(result);
     } catch (error) {
       console.error("Error fetching addresses:", error);
@@ -60,7 +60,7 @@ const LoginContainer: React.FC = () => {
     e.preventDefault();
     if (isFormValid) {
       dispatch(saveUserDetails(formData));
-      callController.createCall(formData);
+      usersController.createCall(formData);
       // Reset form after saving
       setFormData({
         firstName: "",

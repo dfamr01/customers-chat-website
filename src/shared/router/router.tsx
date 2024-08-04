@@ -1,5 +1,5 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
-import AuthScreen from "../../features/auth/auth-screens/AuthScreen";
+import LoginInScreen from "../../features/users/users-screens/LoginInScreen";
 import NotFound from "../components/NotFound";
 import ChatScreen from "../../features/chat/chat-screens/ChatScreen";
 import { ScreensRoutes } from "./routes";
@@ -15,7 +15,7 @@ export const router = (isLoggedIn) =>
     },
     {
       path: ScreensRoutes.Login,
-      element: <AuthScreen />,
+      element: <LoginInScreen />,
     },
     {
       path: ScreensRoutes.Chat,

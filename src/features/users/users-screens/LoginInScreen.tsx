@@ -1,7 +1,7 @@
 import WithSideBar from "../../../shared/layouts/WithSideBar";
-import LoginContainer from "../auth-components/LoginContainer";
+import LoginContainer from "../users-components/LoginContainer";
 
-const AuthScreen = () => {
+const LoginInScreen = () => {
   return (
     <WithSideBar>
       <LoginContainer />
@@ -9,4 +9,4 @@ const AuthScreen = () => {
   );
 };
 
-export default AuthScreen;
+export default LoginInScreen;

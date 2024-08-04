@@ -5,7 +5,7 @@ import { selectCallsState } from "../../customer-service-store/customer-service.
 import { connect } from "react-redux";
 import callController from "../../customer-service-controller/customer-service.controller";
 import ChatMessagesModal from "../ChatMessagesModal";
-import { Call } from "../../customer-service-types/customer-service.types";
+import { Call } from "../../../../shared/interfaces/shared.interface";
 
 interface CustomerServiceChatContainerProps {
   calls: Call[];
