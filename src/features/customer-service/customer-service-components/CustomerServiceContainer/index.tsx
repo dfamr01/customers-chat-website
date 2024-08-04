@@ -3,10 +3,9 @@ import DataTable from "../../../../shared/components/DataTable";
 import { Box, Button, TextField } from "@mui/material";
 import { selectCallsState } from "../../customer-service-store/customer-service.selectors";
 import { connect } from "react-redux";
-import callController from "../../customer-service-controller/customer-service.controller";
+import { CallController } from "../../customer-service-controller/customer-service.controller";
 import ChatMessagesModal from "../ChatMessagesModal";
 import { Call } from "../../../../shared/interfaces/shared.interface";
-
 interface CustomerServiceChatContainerProps {
   calls: Call[];
 }
@@ -31,6 +30,8 @@ const CustomerServiceChatContainer: React.FC<
   }, [calls]);
 
   const fetchChats = async () => {
+    const callController = new CallController();
+
     await callController.getAllCalls();
   };
 
