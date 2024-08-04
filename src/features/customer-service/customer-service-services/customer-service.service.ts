@@ -16,10 +16,6 @@ class CallService extends WebSocketBase {
     return response.data.data;
   }
 
-  deleteCall(id: string): Promise<boolean> {
-    return this.emitWithAck<string, boolean>("deleteCall", id);
-  }
-
   onCallCreated(callback: (call: Call) => void) {
     this.on("callCreated", callback);
   }
@@ -35,5 +31,4 @@ class CallService extends WebSocketBase {
   }
 }
 
-const callService = new CallService();
-export { callService };
+export { CallService };

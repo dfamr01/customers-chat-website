@@ -1,21 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ChatMessageBox from "./ChatMessageBox";
-import callController from "../../../customer-service/customer-service-controller/customer-service.controller";
 import { connect } from "react-redux";
 import { selectUserDetailsState } from "../../../../shared/store/user-store/user-selectors";
 import { UserDetails } from "../../../../shared/interfaces/shared.interface";
 import { useNavigate } from "react-router-dom";
-import { usersController } from "../../../users/users-controllers/users.controller";
+import { UsersWebSocketController } from "../../../users/users-controllers/users.websocket.controller";
 
 interface ChatContainerProps {
   userProfile: UserDetails;
 }
 
+let usersWebSocketController;
+
 const ChatContainer: React.FC<ChatContainerProps> = ({ userProfile }) => {
   const navigate = useNavigate();
 
+  useEffect(() => {
+    usersWebSocketController = new UsersWebSocketController();
+  }, []);
   const handleSendMessage = async (message: string): Promise<void> => {
-    await usersController.forwardMessage({
+    await usersWebSocketController.forwardMessage({
       ...userProfile,
       sender: userProfile.email,
       message,
@@ -23,7 +27,7 @@ const ChatContainer: React.FC<ChatContainerProps> = ({ userProfile }) => {
   };
 
   const handleClose = async () => {
-    callController.deleteCall(userProfile.email);
+    usersWebSocketController.deleteCall(userProfile.email);
     navigate("/login");
   };
 

@@ -6,7 +6,10 @@ import { useNavigate } from "react-router-dom";
 import { ScreensRoutes as ScreenRoute } from "../../../../shared/router/routes";
 import { LoginFormData } from "../../../../shared/interfaces/shared.interface";
 import { validator } from "../../../../shared/utils/utils";
-import { usersController } from "../../users-controllers/users.controller";
+import { UsersController } from "../../users-controllers/users.controller";
+import { UsersWebSocketController } from "../../users-controllers/users.websocket.controller";
+const usersController = new UsersController();
+let usersWebSocketController;
 
 const LoginContainer: React.FC = () => {
   const dispatch = useDispatch();
@@ -24,6 +27,7 @@ const LoginContainer: React.FC = () => {
   const [isFormValid, setIsFormValid] = useState(false);
 
   useEffect(() => {
+    usersWebSocketController = new UsersWebSocketController();
     fetchAddresses();
   }, []);
 
@@ -60,7 +64,7 @@ const LoginContainer: React.FC = () => {
     e.preventDefault();
     if (isFormValid) {
       dispatch(saveUserDetails(formData));
-      usersController.createCall(formData);
+      usersWebSocketController.createCall(formData);
       // Reset form after saving
       setFormData({
         firstName: "",

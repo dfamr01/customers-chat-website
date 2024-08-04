@@ -11,7 +11,6 @@ export const router = (isLoggedIn) =>
     {
       path: ScreensRoutes.Home,
       element: <HomeScreen />,
-      // element: <Navigate to={ScreensRoutes.Login} replace />,
     },
     {
       path: ScreensRoutes.Login,
