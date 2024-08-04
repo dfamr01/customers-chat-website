@@ -19,7 +19,7 @@
                 }
             ],
             "label": "npm: dev",
-            "detail": "vite --port 5173 --host"
+            "detail": "vite --port 5174 --host"
         }
     ]
 }

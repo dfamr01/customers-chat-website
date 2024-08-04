@@ -7,7 +7,7 @@
             "request": "launch",
             "sourceMaps": true,
             "name": "Debug",
-            "url": "http://localhost:5173",
+            "url": "http://localhost:5174",
             "webRoot": "${workspaceFolder}",
             "resolveSourceMapLocations": [
                 "${workspaceFolder}/**",

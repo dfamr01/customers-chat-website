@@ -15,14 +15,14 @@ function picker(obj, pickerObj) {
 }
 
 export function pickEnv(obj = {}) {
-  console.log("🚀 ~ pickEnv ~ obj:", obj);
+  // console.log("🚀 ~ pickEnv ~ obj:", obj);
   const res = picker(obj, ENV_VARS);
   return res;
 }
 
 export function setEnv() {
   const res = pickEnv(import.meta.env);
-  console.log("🚀 ~ setEnv ~ res:", res);
+  // console.log("🚀 ~ setEnv ~ res:", res);
 
   Object.assign(ENV_VARS, res);
 }
